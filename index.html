@@ -36,15 +36,48 @@
       padding-bottom: max(12px, env(safe-area-inset-bottom));
     }
 
-    /* Crisp document styling */
+    /* Modern Executive A4 Sheet */
     .a4-canvas {
       width: 794px;
       background: #ffffff;
-      color: #111827;
+      color: #0f172a;
       transform-origin: top left;
-      padding: 36px 44px 32px 44px;
+      padding: 28px 38px 26px 38px;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
+    }
+
+    /* Theme variables for document */
+    .theme-modern {
+      --accent-bar: #0f172a;
+      --accent-soft: #f8fafc;
+      --accent-tint: #f1f5f9;
+      --th-bg: #1e293b;
+      --th-text: #ffffff;
+      --badge-bg: #0f172a;
+      --badge-text: #ffffff;
+      --border-strong: #334155;
+      --border-subtle: #cbd5e1;
+      --chk-fill: #0f172a;
+      --chk-stroke: #ffffff;
+      --eq-bg: #f1f5f9;
+      --eq-border: #94a3b8;
+    }
+
+    .theme-minimal {
+      --accent-bar: #1e293b;
+      --accent-soft: #ffffff;
+      --accent-tint: #f8fafc;
+      --th-bg: #f1f5f9;
+      --th-text: #0f172a;
+      --badge-bg: #f1f5f9;
+      --badge-text: #0f172a;
+      --border-strong: #1e293b;
+      --border-subtle: #cbd5e1;
+      --chk-fill: #1e293b;
+      --chk-stroke: #ffffff;
+      --eq-bg: #f8fafc;
+      --eq-border: #cbd5e1;
     }
 
     .doc-table {
@@ -52,39 +85,73 @@
       border-collapse: collapse;
       table-layout: fixed;
     }
-    .doc-table th,
-    .doc-table td {
-      border: 1px solid #1e293b;
-      padding: 0 6px;
-      height: 25px;
-      vertical-align: middle;
-    }
-    .doc-table th {
-      background-color: #f1f5f9;
+    .doc-table thead th {
+      background-color: var(--th-bg);
+      color: var(--th-text);
       font-weight: 600;
-      height: 28px;
+      font-size: 12px;
+      height: 30px;
+      padding: 0 8px;
+      border: 1px solid var(--border-strong);
+      letter-spacing: 0.01em;
+    }
+    .doc-table tbody td {
+      border-left: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0 8px;
+      height: 27px;
+      vertical-align: middle;
       font-size: 12.5px;
-      color: #0f172a;
+    }
+    .doc-table tbody tr:nth-child(even) td {
+      background-color: #fafbfc;
+    }
+    .doc-table tbody tr:last-child td {
+      border-bottom: 1px solid var(--border-strong);
+    }
+    .doc-table tbody td:first-child {
+      border-left: 1px solid var(--border-strong);
+    }
+    .doc-table tbody td:last-child {
+      border-right: 1px solid var(--border-strong);
     }
 
-    .chk-box {
-      width: 36px;
-      height: 23px;
-      border: 1px solid #1e293b;
-      display: flex;
+    .modern-chk {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid #475569;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       background: #ffffff;
     }
-    .chk-stack .chk-box + .chk-box,
-    .chk-row + .chk-row .chk-box {
-      border-top: none;
+    .modern-chk.checked {
+      background: var(--chk-fill);
+      border-color: var(--chk-fill);
+    }
+
+    .mini-chk {
+      width: 13px;
+      height: 13px;
+      border-radius: 3px;
+      border: 1.4px solid #475569;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: #ffffff;
+    }
+    .mini-chk.checked {
+      background: var(--chk-fill);
+      border-color: var(--chk-fill);
     }
 
     @page {
       size: A4 portrait;
-      margin: 10mm 10mm 10mm 10mm;
+      margin: 9mm 10mm 9mm 10mm;
     }
 
     @media print {
@@ -128,7 +195,7 @@
         transform: none !important;
         box-shadow: none !important;
         border: none !important;
-        padding: 0 4px !important;
+        padding: 0 2px !important;
         margin: 0 !important;
         page-break-after: avoid !important;
         page-break-inside: avoid !important;
@@ -145,12 +212,12 @@
   <header class="no-print sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
     <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2">
       <div class="flex items-center gap-2.5 min-w-0">
-        <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center text-base shrink-0 shadow-xs">
+        <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-base shrink-0 shadow-xs">
           📋
         </div>
         <div class="min-w-0">
           <h1 class="text-sm sm:text-base font-bold text-slate-900 truncate leading-tight">ร่างใบสั่งงาน</h1>
-          <p class="hidden sm:block text-xs text-slate-500">กรอกง่าย สั่งพิมพ์ A4 ผ่าน AirPrint พอดี 1 หน้าเป๊ะ</p>
+          <p class="hidden sm:block text-xs text-slate-500">แบบฟอร์มโมเดิร์น สั่งพิมพ์ A4 ผ่าน AirPrint พอดี 1 หน้า</p>
         </div>
       </div>
 
@@ -169,7 +236,7 @@
         <button type="button" onclick="clearForm()" class="px-3 py-1.5 bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200 rounded-lg font-medium transition flex items-center gap-1">
           <span>🧹</span> ล้างฟอร์ม
         </button>
-        <button type="button" onclick="handlePrint()" class="px-4 py-1.5 bg-blue-600 text-white hover:bg-blue-700 font-semibold rounded-lg shadow-sm transition flex items-center gap-1.5">
+        <button type="button" onclick="handlePrint()" class="px-4 py-1.5 bg-slate-900 text-white hover:bg-slate-800 font-semibold rounded-lg shadow-sm transition flex items-center gap-1.5">
           <span>🖨️</span> พิมพ์ / เซฟเป็น PDF
         </button>
       </div>
@@ -178,10 +245,10 @@
     <!-- Mobile Segmented Control Tabs (< 1024px) -->
     <div class="lg:hidden px-3 pb-2.5">
       <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-xl gap-1">
-        <button id="tab_btn_edit" type="button" onclick="switchMobileTab('edit')" class="py-1.5 text-sm font-bold rounded-lg bg-white text-blue-600 shadow-xs transition">
+        <button id="tab_btn_edit" type="button" onclick="switchMobileTab('edit')" class="py-1.5 text-sm font-bold rounded-lg bg-white text-slate-900 shadow-xs transition">
           ✏️ กรอกข้อมูล
         </button>
-        <button id="tab_btn_preview" type="button" onclick="switchMobileTab('preview')" class="py-1.5 text-sm font-semibold rounded-lg text-slate-600 transition">
+        <button id="tab_btn_preview" type="button" onclick="switchMobileTab('preview')" class="py-1.5 text-sm font-semibold rounded-lg text-slate-500 transition">
           📄 ดูตัวอย่าง A4
         </button>
       </div>
@@ -199,32 +266,32 @@
         <div class="space-y-2">
           <label class="block text-sm font-bold text-slate-800">1. ประเภทแบบฟอร์ม</label>
           <div class="grid grid-cols-1 gap-1.5 text-sm">
-            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 cursor-pointer transition">
-              <input type="radio" name="form_type" value="booking" onchange="updateForm()" class="w-4 h-4 accent-blue-600">
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-slate-900 has-[:checked]:text-white has-[:checked]:border-slate-900 cursor-pointer transition">
+              <input type="radio" name="form_type" value="booking" onchange="updateForm()" class="w-4 h-4 accent-white">
               <span>แบบฟอร์มจองสินค้าเพื่อการจัดส่ง</span>
             </label>
-            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 cursor-pointer transition">
-              <input type="radio" name="form_type" value="temp_order" onchange="updateForm()" class="w-4 h-4 accent-blue-600">
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-slate-900 has-[:checked]:text-white has-[:checked]:border-slate-900 cursor-pointer transition">
+              <input type="radio" name="form_type" value="temp_order" onchange="updateForm()" class="w-4 h-4 accent-white">
               <span>แบบฟอร์มสั่งซื้อสินค้า (ชั่วคราว เพื่อการออกบิล)</span>
             </label>
-            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 cursor-pointer transition">
-              <input type="radio" name="form_type" value="sample" onchange="updateForm()" class="w-4 h-4 accent-blue-600">
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-slate-900 has-[:checked]:text-white has-[:checked]:border-slate-900 cursor-pointer transition">
+              <input type="radio" name="form_type" value="sample" onchange="updateForm()" class="w-4 h-4 accent-white">
               <span>แบบฟอร์มเบิกสินค้าเพื่อเป็นตัวอย่าง</span>
             </label>
-            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-blue-50 has-[:checked]:border-blue-400 cursor-pointer transition">
-              <input type="radio" name="form_type" value="quotation" checked onchange="updateForm()" class="w-4 h-4 accent-blue-600">
-              <span class="font-semibold text-blue-950">เพื่อทำใบเสนอราคาให้ลูกค้า</span>
+            <label class="flex items-center gap-2.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-slate-900 has-[:checked]:text-white has-[:checked]:border-slate-900 cursor-pointer transition">
+              <input type="radio" name="form_type" value="quotation" checked onchange="updateForm()" class="w-4 h-4 accent-white">
+              <span class="font-semibold">เพื่อทำใบเสนอราคาให้ลูกค้า</span>
             </label>
           </div>
         </div>
 
         <div class="space-y-2 pt-3 border-t border-slate-100">
           <div class="flex items-center justify-between">
-            <label class="block text-sm font-bold text-slate-800">2. ส่งโดย</label>
+            <label class="block text-sm font-bold text-slate-800">2. ช่องทางการส่ง</label>
             <span class="text-xs text-slate-400">เลือกไม่ระบุเพื่อเว้นว่าง</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-sm">
-            <label class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-slate-800 has-[:checked]:text-white has-[:checked]:border-slate-800 cursor-pointer transition font-medium">
+            <label class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border border-slate-200 bg-slate-50/50 has-[:checked]:bg-slate-900 has-[:checked]:text-white has-[:checked]:border-slate-900 cursor-pointer transition font-medium">
               <input type="radio" name="send_via" value="none" checked onchange="updateForm()" class="sr-only">
               <span>ไม่ระบุ</span>
             </label>
@@ -254,19 +321,19 @@
                 <span class="text-xs font-medium text-slate-500">วันที่</span>
                 <button type="button" onclick="setTodayDate()" class="text-[11px] font-semibold text-blue-600 active:opacity-60">ใช้วันนี้</button>
               </div>
-              <input id="input_date" type="text" value="24/11/69" oninput="updateForm()" placeholder="วว/ดด/ปป" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+              <input id="input_date" type="text" value="24/11/69" oninput="updateForm()" placeholder="วว/ดด/ปป" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
             </div>
             <div>
-              <span class="block text-xs font-medium text-slate-500 mb-1">รหัสด่วน / เลขกำกับ</span>
-              <input id="input_ref_code" type="text" value="481" oninput="updateForm()" placeholder="เช่น 481" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none font-bold text-blue-700">
+              <span class="block text-xs font-medium text-slate-500 mb-1">เลขกำกับ / รหัสงาน</span>
+              <input id="input_ref_code" type="text" value="481" oninput="updateForm()" placeholder="เช่น 481" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none font-bold text-slate-900">
             </div>
             <div>
               <span class="block text-xs font-medium text-slate-500 mb-1">เลขที่บิลอ้างอิง</span>
-              <input id="input_ref_bill" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+              <input id="input_ref_bill" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
             </div>
             <div>
               <span class="block text-xs font-medium text-slate-500 mb-1">สวัสดิการ</span>
-              <input id="input_welfare" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+              <input id="input_welfare" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
             </div>
           </div>
         </div>
@@ -276,7 +343,7 @@
           <div class="space-y-2.5">
             <div>
               <span class="block text-xs font-medium text-slate-500 mb-1">ชื่อลูกค้า (โรงพยาบาล)</span>
-              <input id="input_hospital" type="text" value="แก้งสนามนาง" oninput="updateForm()" placeholder="พิมพ์ชื่อโรงพยาบาล..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none font-medium">
+              <input id="input_hospital" type="text" value="แก้งสนามนาง" oninput="updateForm()" placeholder="พิมพ์ชื่อโรงพยาบาล..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none font-medium">
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <div>
@@ -289,21 +356,21 @@
                     <button type="button" onclick="setDept('ER')" class="px-2 py-0.5 bg-slate-100 active:bg-slate-200 rounded text-[11px] font-semibold">ER</button>
                   </div>
                 </div>
-                <input id="input_department" type="text" value="IPD" oninput="updateForm()" placeholder="เช่น IPD" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none font-medium">
+                <input id="input_department" type="text" value="IPD" oninput="updateForm()" placeholder="เช่น IPD" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none font-medium">
               </div>
               <div>
                 <span class="block text-xs font-medium text-slate-500 mb-1">ชื่อผู้ติดต่อ</span>
-                <input id="input_contact_name" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+                <input id="input_contact_name" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
               </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <div>
                 <span class="block text-xs font-medium text-slate-500 mb-1">ที่อยู่</span>
-                <input id="input_address" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+                <input id="input_address" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
               </div>
               <div>
                 <span class="block text-xs font-medium text-slate-500 mb-1">E-Mail ลูกค้า</span>
-                <input id="input_email" type="email" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+                <input id="input_email" type="email" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
               </div>
             </div>
           </div>
@@ -314,7 +381,7 @@
       <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs space-y-4">
         <div class="space-y-2.5">
           <div class="flex items-center justify-between">
-            <label class="block text-sm font-bold text-slate-800">5. ข้อมูลเครื่อง (หัวตาราง)</label>
+            <label class="block text-sm font-bold text-slate-800">5. ข้อมูลเครื่องมือแพทย์</label>
             <button type="button" onclick="insertMedrenaVP50()" class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg active:bg-blue-100">
               ใส่ Medrena VP-50
             </button>
@@ -322,19 +389,19 @@
           <div class="grid grid-cols-2 gap-2.5">
             <div>
               <span class="block text-xs font-medium text-slate-500 mb-1">ประเภทเครื่อง</span>
-              <input id="input_eq_type" type="text" value="INFUSION PUMP" oninput="updateForm()" placeholder="เช่น INFUSION PUMP" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none font-medium">
+              <input id="input_eq_type" type="text" value="INFUSION PUMP" oninput="updateForm()" placeholder="เช่น INFUSION PUMP" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none font-medium">
             </div>
             <div>
               <span class="block text-xs font-medium text-slate-500 mb-1">ยี่ห้อ (Brand)</span>
-              <input id="input_eq_brand" type="text" value="Medrena" oninput="updateForm()" placeholder="เช่น Medrena" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none font-medium">
+              <input id="input_eq_brand" type="text" value="Medrena" oninput="updateForm()" placeholder="เช่น Medrena" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none font-medium">
             </div>
             <div>
               <span class="block text-xs font-medium text-slate-500 mb-1">รุ่น (Model)</span>
-              <input id="input_eq_model" type="text" value="VP-50 Pro" oninput="updateForm()" placeholder="เช่น VP-50 Pro" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none font-medium">
+              <input id="input_eq_model" type="text" value="VP-50 Pro" oninput="updateForm()" placeholder="เช่น VP-50 Pro" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none font-medium">
             </div>
             <div>
               <span class="block text-xs font-medium text-slate-500 mb-1">Serial Number (S/N)</span>
-              <input id="input_eq_sn" type="text" value="I-230907041" oninput="updateForm()" placeholder="เช่น I-230907041" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none font-medium">
+              <input id="input_eq_sn" type="text" value="I-230907041" oninput="updateForm()" placeholder="เช่น I-230907041" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none font-medium">
             </div>
           </div>
         </div>
@@ -373,26 +440,32 @@
           </div>
           <div>
             <span class="block text-xs font-medium text-slate-500 mb-1">กำหนดส่ง/ได้รับ</span>
-            <input id="input_delivery_date" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+            <input id="input_delivery_date" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
           </div>
           <div>
             <span class="block text-xs font-medium text-slate-500 mb-1">เปิดบิลแล้ว เลขที่</span>
-            <input id="input_billed_no" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+            <input id="input_billed_no" type="text" oninput="updateForm()" placeholder="เว้นว่างได้" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
           </div>
         </div>
         <div>
           <span class="block text-xs font-medium text-slate-500 mb-1">ผู้อนุมัติ</span>
-          <input id="input_approver" type="text" oninput="updateForm()" placeholder="พิมพ์ชื่อ หรือเว้นว่างไว้เซ็นมือ" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-blue-500 outline-none">
+          <input id="input_approver" type="text" oninput="updateForm()" placeholder="พิมพ์ชื่อ หรือเว้นว่างไว้เซ็นมือ" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-slate-900 outline-none">
         </div>
       </div>
 
     </section>
 
-    <!-- Right Panel: Crisp A4 Document Preview -->
+    <!-- Right Panel: Redesigned Modern Executive A4 Document Preview -->
     <section id="panel_preview" class="hidden lg:block lg:col-span-7">
-      <!-- Font Selector Bar (no-print) -->
+      <!-- Style & Font Bar (no-print) -->
       <div class="no-print mb-2.5 flex flex-wrap items-center justify-between gap-2 px-1">
-        <span class="text-xs font-semibold text-slate-600">ฟอนต์เอกสาร:</span>
+        <!-- Theme Toggle -->
+        <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 text-xs">
+          <button type="button" id="theme_btn_modern" onclick="setDocTheme('modern')" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-900 text-white transition">โมเดิร์น</button>
+          <button type="button" id="theme_btn_minimal" onclick="setDocTheme('minimal')" class="px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100 transition">ประหยัดหมึก</button>
+        </div>
+
+        <!-- Font Toggle -->
         <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 text-xs">
           <button type="button" id="font_btn_ibm" onclick="setDocFont('ibm')" class="px-2.5 py-1 rounded-lg font-semibold bg-blue-600 text-white transition">IBM Plex</button>
           <button type="button" id="font_btn_prompt" onclick="setDocFont('prompt')" class="px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100 transition">Prompt</button>
@@ -402,162 +475,222 @@
 
       <!-- Scaled A4 Container -->
       <div id="a4_scale_wrapper" class="w-full overflow-hidden rounded-xl border border-slate-300 shadow-lg bg-white mx-auto">
-        <div id="a4_canvas" class="a4-canvas doc-font">
+        <div id="a4_canvas" class="a4-canvas doc-font theme-modern">
 
-          <!-- 1. Document Title -->
-          <div class="text-center mb-4">
-            <h1 class="text-[24px] font-bold tracking-wide text-slate-900 leading-tight">ร่างใบสั่งงาน</h1>
-          </div>
+          <!-- Top Accent Bar -->
+          <div class="h-1.5 w-full rounded-full mb-5" style="background: var(--accent-bar);"></div>
 
-          <!-- 2. Top Checkboxes Row (Clean original layout - no boxy cage around labels) -->
-          <div class="flex items-start justify-between gap-6 mb-4 text-[12.5px]">
-            <!-- Left: Form Types -->
-            <div class="flex items-start gap-3 flex-1">
-              <div class="font-semibold text-slate-900 whitespace-nowrap pt-0.5 w-[104px]">ประเภทแบบฟอร์ม</div>
-              <div class="flex flex-col">
-                <div class="chk-row flex items-center gap-2.5">
-                  <div id="chk_booking" class="chk-box"></div>
-                  <span>แบบฟอร์มจองสินค้าเพื่อการจัดส่ง</span>
-                </div>
-                <div class="chk-row flex items-center gap-2.5">
-                  <div id="chk_temp_order" class="chk-box"></div>
-                  <span>แบบฟอร์มสั่งซื้อสินค้า (ชั่วคราว เพื่อการออกบิล)</span>
-                </div>
-                <div class="chk-row flex items-center gap-2.5">
-                  <div id="chk_sample" class="chk-box"></div>
-                  <span>แบบฟอร์มเบิกสินค้าเพื่อเป็นตัวอย่าง</span>
-                </div>
-                <div class="chk-row flex items-center gap-2.5">
-                  <div id="chk_quotation" class="chk-box"></div>
-                  <span>เพื่อทำใบเสนอราคาให้ลูกค้า</span>
-                </div>
+          <!-- 1. Executive Header Row -->
+          <div class="flex items-start justify-between gap-6 pb-4 mb-4 border-b-2 border-slate-800">
+            <!-- Left: Title & Subtitle -->
+            <div>
+              <div class="flex items-center gap-3">
+                <h1 class="text-[28px] font-bold tracking-tight text-slate-900 leading-none">ร่างใบสั่งงาน</h1>
+                <span id="preview_ref_code_badge" class="hidden px-2.5 py-1 rounded-md text-[13px] font-bold tracking-wider" style="background: var(--badge-bg); color: var(--badge-text); border: 1px solid var(--border-strong);">
+                  #<span id="preview_ref_code"></span>
+                </span>
               </div>
+              <p class="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-slate-500 mt-1.5">
+                JOB ORDER DRAFT &bull; QUOTATION &amp; SERVICE REQUEST
+              </p>
             </div>
 
-            <!-- Right: Send Channels (Clean bottom-ruled labels like original) -->
-            <div class="w-[155px] shrink-0">
-              <div class="chk-row flex items-center">
-                <div id="chk_post" class="chk-box"></div>
-                <div class="flex-1 h-[23px] leading-[22px] pl-2 border-b border-slate-800">ส่งไปรษณีย์</div>
+            <!-- Right: Clean Structured Meta Grid -->
+            <div class="w-[235px] shrink-0 text-[12px] space-y-1.5">
+              <div class="flex items-baseline justify-between border-b border-slate-200 pb-1">
+                <span class="text-slate-500 font-medium">วันที่เอกสาร</span>
+                <span id="preview_date" class="font-bold text-slate-900 text-[13px]"></span>
               </div>
-              <div class="chk-row flex items-center">
-                <div id="chk_fax" class="chk-box"></div>
-                <div class="flex-1 h-[23px] leading-[22px] pl-2 border-b border-slate-800">FAX</div>
+              <div class="flex items-baseline justify-between border-b border-slate-200 pb-1">
+                <span class="text-slate-500 font-medium">เลขที่บิลอ้างอิง</span>
+                <span id="preview_ref_bill" class="font-semibold text-slate-800"></span>
               </div>
-              <div class="chk-row flex items-center">
-                <div id="chk_email" class="chk-box"></div>
-                <div class="flex-1 h-[23px] leading-[22px] pl-2 border-b border-slate-800">E-Mail</div>
+              <div class="flex items-baseline justify-between">
+                <span class="text-slate-500 font-medium">สวัสดิการ</span>
+                <span id="preview_welfare" class="font-semibold text-slate-800"></span>
               </div>
             </div>
           </div>
 
-          <!-- 3. Customer Details Box & Right Metadata -->
-          <div class="flex items-stretch gap-5 mb-4 text-[12.5px]">
-            <!-- Customer Box (Clean white interior, crisp border, no messy dots) -->
-            <div class="flex-1 border border-slate-800 px-3.5 py-2.5 space-y-1.5 relative">
-              <!-- Optional floating quick code on top-right of customer box like handwritten original -->
-              <div id="preview_ref_code_wrap" class="absolute -top-6 right-1 hidden">
-                <span id="preview_ref_code" class="text-[16px] font-bold tracking-wider text-slate-900"></span>
+          <!-- 2. Purpose & Delivery Channel Cards -->
+          <div class="grid grid-cols-12 gap-3 mb-3.5 text-[12px]">
+            <!-- Form Type Card -->
+            <div class="col-span-9 rounded-lg border border-slate-300 px-3.5 py-2.5" style="background: var(--accent-soft);">
+              <div class="text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500 mb-2">
+                ประเภทแบบฟอร์ม / Form Type
               </div>
-
-              <div class="flex items-baseline leading-snug">
-                <span class="w-[92px] font-semibold shrink-0">ชื่อลูกค้า</span>
-                <span class="mr-2 shrink-0">โรงพยาบาล</span>
-                <span id="preview_hospital" class="font-semibold text-slate-900"></span>
-              </div>
-              <div class="flex items-baseline leading-snug">
-                <span class="w-[92px] font-semibold shrink-0">ที่อยู่</span>
-                <span id="preview_address" class="text-slate-900"></span>
-              </div>
-              <div class="flex items-baseline leading-snug">
-                <span class="w-[92px] font-semibold shrink-0">ข้อมูลการติดต่อ</span>
-                <span class="w-[68px] shrink-0">ชื่อ</span>
-                <span id="preview_contact_name" class="text-slate-900"></span>
-              </div>
-              <div class="flex items-baseline leading-snug">
-                <span class="w-[92px] shrink-0"></span>
-                <span class="w-[68px] shrink-0">หน่วยงาน</span>
-                <span id="preview_department" class="font-semibold text-slate-900"></span>
-              </div>
-              <div class="flex items-baseline leading-snug">
-                <span class="w-[92px] shrink-0"></span>
-                <span class="w-[68px] shrink-0">E-Mail</span>
-                <span id="preview_email" class="text-slate-900"></span>
+              <div class="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span id="chk_booking" class="modern-chk"></span>
+                  <span id="lbl_booking" class="text-slate-700">จองสินค้าเพื่อการจัดส่ง</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span id="chk_temp_order" class="modern-chk"></span>
+                  <span id="lbl_temp_order" class="text-slate-700">สั่งซื้อสินค้า (ชั่วคราว เพื่อออกบิล)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span id="chk_sample" class="modern-chk"></span>
+                  <span id="lbl_sample" class="text-slate-700">เบิกสินค้าเพื่อเป็นตัวอย่าง</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span id="chk_quotation" class="modern-chk"></span>
+                  <span id="lbl_quotation" class="text-slate-700">เพื่อทำใบเสนอราคาให้ลูกค้า</span>
+                </div>
               </div>
             </div>
 
-            <!-- Right Metadata Column -->
-            <div class="w-[210px] shrink-0 flex flex-col justify-between py-1">
-              <div class="space-y-2">
-                <div class="flex items-baseline">
-                  <span class="w-[82px] font-semibold shrink-0">วันที่</span>
-                  <span id="preview_date" class="font-semibold text-slate-900"></span>
-                </div>
-                <div class="flex items-baseline">
-                  <span class="w-[82px] shrink-0">เลขที่บิลอ้างอิง</span>
-                  <span id="preview_ref_bill" class="text-slate-900"></span>
-                </div>
+            <!-- Send Channel Card -->
+            <div class="col-span-3 rounded-lg border border-slate-300 px-3 py-2.5" style="background: var(--accent-soft);">
+              <div class="text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500 mb-1.5">
+                ช่องทางการส่ง
               </div>
-              <div class="flex items-baseline">
-                <span class="w-[82px] shrink-0">สวัสดิการ</span>
-                <span id="preview_welfare" class="text-slate-900"></span>
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span id="chk_post" class="mini-chk"></span>
+                  <span id="lbl_post" class="text-[11.5px] text-slate-700">ส่งไปรษณีย์</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span id="chk_fax" class="mini-chk"></span>
+                  <span id="lbl_fax" class="text-[11.5px] text-slate-700">FAX</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span id="chk_email" class="mini-chk"></span>
+                  <span id="lbl_email" class="text-[11.5px] text-slate-700">E-Mail</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- 4. Main Items Table (Exact 14 rows matching original form, fits A4 with generous margin) -->
-          <table class="doc-table text-center text-[12.5px] mb-5">
-            <colgroup>
-              <col style="width: 7%;">
-              <col style="width: 16%;">
-              <col style="width: 45%;">
-              <col style="width: 9%;">
-              <col style="width: 11%;">
-              <col style="width: 12%;">
-            </colgroup>
-            <thead>
-              <tr>
-                <th>ลำดับ</th>
-                <th>รหัสสินค้า</th>
-                <th>รายการ</th>
-                <th>จำนวน</th>
-                <th>ราคา/ชิ้น</th>
-                <th>จำนวนเงิน</th>
-              </tr>
-            </thead>
-            <tbody id="preview_table_body"></tbody>
-          </table>
+          <!-- 3. Customer Information Card -->
+          <div class="rounded-lg border border-slate-300 overflow-hidden mb-3.5 text-[12px]">
+            <div class="px-3.5 py-1.5 border-b border-slate-200 flex items-center justify-between" style="background: var(--accent-tint);">
+              <span class="text-[10.5px] font-bold uppercase tracking-[0.12em] text-slate-700">ข้อมูลลูกค้า / CUSTOMER INFORMATION</span>
+              <span id="preview_dept_pill" class="hidden px-2 py-0.5 rounded bg-white border border-slate-300 text-[11px] font-bold text-slate-800">
+                หน่วยงาน: <span id="preview_department_pill_val"></span>
+              </span>
+            </div>
+            <div class="px-3.5 py-2.5 grid grid-cols-12 gap-x-5 gap-y-1.5 bg-white">
+              <div class="col-span-7 space-y-1.5">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-slate-500 w-[68px] shrink-0">ชื่อลูกค้า</span>
+                  <span class="text-slate-900 font-bold text-[13.5px]">โรงพยาบาล <span id="preview_hospital"></span></span>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-slate-500 w-[68px] shrink-0">ที่อยู่</span>
+                  <span id="preview_address" class="text-slate-800"></span>
+                </div>
+              </div>
+              <div class="col-span-5 space-y-1.5 border-l border-slate-200 pl-4">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-slate-500 w-[56px] shrink-0">ผู้ติดต่อ</span>
+                  <span id="preview_contact_name" class="text-slate-800 font-medium"></span>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-slate-500 w-[56px] shrink-0">หน่วยงาน</span>
+                  <span id="preview_department" class="text-slate-900 font-bold"></span>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-slate-500 w-[56px] shrink-0">E-Mail</span>
+                  <span id="preview_email" class="text-slate-800"></span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <!-- 5. Footer: Approver Line (above) + Job Status Box (below right, exact match to original!) -->
-          <div class="space-y-3.5 text-[12.5px]">
-            <!-- Row 1: Approver Signature Line -->
-            <div class="flex items-baseline pl-[16%]">
-              <span class="font-semibold whitespace-nowrap mr-3">ผู้อนุมัติ :</span>
-              <div class="flex-1 border-b border-slate-800 text-center min-h-[20px] pb-0.5 font-medium">
-                <span id="preview_approver"></span>
+          <!-- 4. Dedicated Medical Equipment Spec Bar (auto-hides if all equipment fields are empty) -->
+          <div id="preview_equipment_card" class="rounded-lg border mb-3.5 px-3.5 py-2.5" style="background: var(--eq-bg); border-color: var(--eq-border);">
+            <div class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500 mb-1.5">
+              ข้อมูลเครื่องมือแพทย์ / EQUIPMENT SPECIFICATION
+            </div>
+            <div class="grid grid-cols-4 gap-3 text-[12px]">
+              <div>
+                <div class="text-[10px] text-slate-500">ประเภทเครื่อง (Type)</div>
+                <div id="preview_eq_type" class="font-bold text-slate-900 text-[13px] mt-0.5"></div>
+              </div>
+              <div class="border-l border-slate-300 pl-3">
+                <div class="text-[10px] text-slate-500">ยี่ห้อ (Brand)</div>
+                <div id="preview_eq_brand" class="font-bold text-slate-900 text-[13px] mt-0.5"></div>
+              </div>
+              <div class="border-l border-slate-300 pl-3">
+                <div class="text-[10px] text-slate-500">รุ่น (Model)</div>
+                <div id="preview_eq_model" class="font-bold text-slate-900 text-[13px] mt-0.5"></div>
+              </div>
+              <div class="border-l border-slate-300 pl-3">
+                <div class="text-[10px] text-slate-500">หมายเลขเครื่อง (S/N)</div>
+                <div id="preview_eq_sn" class="font-bold text-slate-900 text-[13px] font-mono mt-0.5"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Clean Modern Items Table (10 balanced spacious rows) -->
+          <div class="rounded-lg overflow-hidden mb-4">
+            <table class="doc-table text-center">
+              <colgroup>
+                <col style="width: 7%;">
+                <col style="width: 16%;">
+                <col style="width: 45%;">
+                <col style="width: 9%;">
+                <col style="width: 11%;">
+                <col style="width: 12%;">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>รหัสสินค้า</th>
+                  <th class="text-left pl-3">รายการสินค้า / อะไหล่</th>
+                  <th>จำนวน</th>
+                  <th class="text-right pr-2.5">ราคา/ชิ้น</th>
+                  <th class="text-right pr-2.5">จำนวนเงิน</th>
+                </tr>
+              </thead>
+              <tbody id="preview_table_body"></tbody>
+              <tfoot id="preview_table_footer" class="hidden">
+                <tr class="bg-slate-100 font-bold text-[12.5px]">
+                  <td colspan="5" class="text-right pr-3 py-1.5 border border-slate-700">รวมเป็นเงินทั้งสิ้น (Total)</td>
+                  <td id="preview_grand_total" class="text-right pr-2.5 py-1.5 border border-slate-700 text-slate-900"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- 6. Balanced Executive Footer (Approval Card + Job Status Card side-by-side) -->
+          <div class="grid grid-cols-12 gap-4 items-stretch text-[12px]">
+            <!-- Left: Approver Card -->
+            <div class="col-span-5 rounded-lg border border-slate-300 p-3.5 flex flex-col justify-between bg-white">
+              <div class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                การอนุมัติ / APPROVAL
+              </div>
+              <div class="pt-7 pb-1 text-center">
+                <div class="border-b border-slate-700 pb-1 min-h-[24px] font-semibold text-slate-900 text-[13px]">
+                  <span id="preview_approver"></span>
+                </div>
+                <div class="text-[11px] font-semibold text-slate-700 mt-1.5">ผู้อนุมัติ (Approver)</div>
+                <div class="text-[10.5px] text-slate-400 mt-1">วันที่ ......... / ......... / .........</div>
               </div>
             </div>
 
-            <!-- Row 2: Job Status Box (Right-aligned, labels never wrap!) -->
-            <div class="flex justify-end items-start gap-2.5 text-[12px]">
-              <!-- Left Labels (aligned exactly with rows inside the status box) -->
-              <div class="text-right font-medium text-slate-900 pt-[27px] space-y-[7px] whitespace-nowrap">
-                <div class="h-[22px] leading-[22px]">เช็คสินค้า</div>
-                <div class="h-[22px] leading-[22px]">ต้องสั่งสินค้า</div>
-                <div class="h-[22px] leading-[22px]">กำหนดการส่งสินค้า / ได้รับสินค้า</div>
-                <div class="h-[22px] leading-[22px]">เปิดบิลแล้ว เลขที่</div>
+            <!-- Right: Job Status Card -->
+            <div class="col-span-7 rounded-lg border border-slate-300 overflow-hidden bg-white">
+              <div class="px-3.5 py-1.5 border-b border-slate-200 flex items-center justify-between" style="background: var(--accent-tint);">
+                <span class="text-[10.5px] font-bold uppercase tracking-[0.12em] text-slate-700">สถานะงาน / JOB STATUS</span>
+                <span class="text-[10px] text-slate-400">สำหรับเจ้าหน้าที่</span>
               </div>
-
-              <!-- Right Bordered Box -->
-              <div class="w-[235px] shrink-0 border border-slate-800">
-                <div class="h-[26px] leading-[25px] text-center font-semibold bg-slate-100 border-b border-slate-800">
-                  สถานะงาน
+              <div class="px-3.5 py-2.5 space-y-2 text-[11.5px]">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-slate-600 font-medium whitespace-nowrap">เช็คสินค้า</span>
+                  <div id="preview_stock_status" class="flex items-center gap-3.5"></div>
                 </div>
-                <div class="px-2.5 py-[3px] text-center space-y-[7px]">
-                  <div id="preview_stock_status" class="h-[22px] leading-[22px]">พร้อมส่งทั้งหมด &nbsp;/&nbsp; ไม่พร้อมส่ง</div>
-                  <div id="preview_order_origin" class="h-[22px] leading-[22px]">ในประเทศ &nbsp;/&nbsp; ต่างประเทศ</div>
-                  <div id="preview_delivery_date" class="h-[22px] leading-[22px] font-semibold"></div>
-                  <div id="preview_billed_no" class="h-[22px] leading-[22px] font-semibold"></div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-slate-600 font-medium whitespace-nowrap">ต้องสั่งสินค้า</span>
+                  <div id="preview_order_origin" class="flex items-center gap-3.5"></div>
+                </div>
+                <div class="flex items-baseline gap-2 pt-0.5">
+                  <span class="text-slate-600 font-medium whitespace-nowrap">กำหนดส่ง / ได้รับสินค้า</span>
+                  <span id="preview_delivery_date" class="flex-1 border-b border-slate-300 min-h-[18px] text-right font-semibold text-slate-900 px-1"></span>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-slate-600 font-medium whitespace-nowrap">เปิดบิลแล้ว เลขที่</span>
+                  <span id="preview_billed_no" class="flex-1 border-b border-slate-300 min-h-[18px] text-right font-semibold text-slate-900 px-1"></span>
                 </div>
               </div>
             </div>
@@ -571,10 +704,10 @@
 
   <!-- Floating Mobile Bottom Action Bar -->
   <div class="no-print lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 pt-2.5 safe-bottom shadow-[0_-4px_16px_rgba(0,0,0,0.08)] z-50 flex items-center gap-2">
-    <button type="button" onclick="loadExample()" class="flex-1 py-2.5 bg-blue-50 text-blue-700 text-xs font-bold rounded-xl border border-blue-200 active:bg-blue-100 flex items-center justify-center gap-1">
+    <button type="button" onclick="loadExample()" class="flex-1 py-2.5 bg-slate-100 text-slate-800 text-xs font-bold rounded-xl border border-slate-200 active:bg-slate-200 flex items-center justify-center gap-1">
       <span>⚡</span> ตัวอย่างรูป 2
     </button>
-    <button type="button" onclick="handlePrint()" class="flex-[2] py-2.5 bg-blue-600 text-white text-sm font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:bg-blue-700">
+    <button type="button" onclick="handlePrint()" class="flex-[2] py-2.5 bg-slate-900 text-white text-sm font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:bg-slate-800">
       <span>🖨️</span> สั่งปริ้นในบริษัท (AirPrint)
     </button>
   </div>
@@ -589,7 +722,7 @@
         </p>
       </div>
       <div class="space-y-2">
-        <a id="standalone_safari_link" href="#" target="_blank" rel="noopener" onclick="closeStandaloneModal()" class="w-full py-3 bg-blue-600 text-white text-sm font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:bg-blue-700">
+        <a id="standalone_safari_link" href="#" target="_blank" rel="noopener" onclick="closeStandaloneModal()" class="w-full py-3 bg-slate-900 text-white text-sm font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:bg-slate-800">
           <span>🖨️</span> เปิดใน Safari เพื่อสั่งปริ้นทันที
         </a>
         <button type="button" onclick="closeStandaloneModal()" class="w-full py-2.5 bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl active:bg-slate-200">
@@ -603,7 +736,8 @@
   </div>
 
   <script>
-    const CHECK_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+    const CHECK_SVG_WHITE = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+    const MINI_CHECK_SVG = `<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
     const FONT_MAP = {
       ibm: "'IBM Plex Sans Thai', -apple-system, sans-serif",
@@ -612,6 +746,7 @@
     };
 
     let currentFont = 'ibm';
+    let currentTheme = 'modern';
     let items = [
       { code: '', name: 'Door Sensor', qty: '1', price: '', total: '' }
     ];
@@ -631,6 +766,23 @@
         .replace(/>/g, '&gt;');
     }
 
+    function setDocTheme(themeKey) {
+      if (themeKey !== 'modern' && themeKey !== 'minimal') return;
+      currentTheme = themeKey;
+      const canvas = document.getElementById('a4_canvas');
+      canvas.classList.remove('theme-modern', 'theme-minimal');
+      canvas.classList.add(`theme-${themeKey}`);
+
+      ['modern', 'minimal'].forEach(k => {
+        const btn = document.getElementById(`theme_btn_${k}`);
+        if (!btn) return;
+        btn.className = k === themeKey
+          ? 'px-2.5 py-1 rounded-lg font-semibold bg-slate-900 text-white transition'
+          : 'px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100 transition';
+      });
+      saveState();
+    }
+
     function setDocFont(fontKey) {
       if (!FONT_MAP[fontKey]) return;
       currentFont = fontKey;
@@ -638,11 +790,9 @@
       ['ibm', 'prompt', 'noto'].forEach(k => {
         const btn = document.getElementById(`font_btn_${k}`);
         if (!btn) return;
-        if (k === fontKey) {
-          btn.className = 'px-2.5 py-1 rounded-lg font-semibold bg-blue-600 text-white transition';
-        } else {
-          btn.className = 'px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100 transition';
-        }
+        btn.className = k === fontKey
+          ? 'px-2.5 py-1 rounded-lg font-semibold bg-blue-600 text-white transition'
+          : 'px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100 transition';
       });
       saveState();
       requestAnimationFrame(scaleA4Preview);
@@ -657,13 +807,13 @@
       if (tab === 'edit') {
         editPanel.classList.remove('hidden');
         previewPanel.classList.add('hidden');
-        btnEdit.className = 'py-1.5 text-sm font-bold rounded-lg bg-white text-blue-600 shadow-xs transition';
-        btnPreview.className = 'py-1.5 text-sm font-semibold rounded-lg text-slate-600 transition';
+        btnEdit.className = 'py-1.5 text-sm font-bold rounded-lg bg-white text-slate-900 shadow-xs transition';
+        btnPreview.className = 'py-1.5 text-sm font-semibold rounded-lg text-slate-500 transition';
       } else {
         editPanel.classList.add('hidden');
         previewPanel.classList.remove('hidden');
-        btnPreview.className = 'py-1.5 text-sm font-bold rounded-lg bg-white text-blue-600 shadow-xs transition';
-        btnEdit.className = 'py-1.5 text-sm font-semibold rounded-lg text-slate-600 transition';
+        btnPreview.className = 'py-1.5 text-sm font-bold rounded-lg bg-white text-slate-900 shadow-xs transition';
+        btnEdit.className = 'py-1.5 text-sm font-semibold rounded-lg text-slate-500 transition';
         requestAnimationFrame(scaleA4Preview);
       }
       window.scrollTo({ top: 0, behavior: 'instant' });
@@ -746,21 +896,21 @@
             <button type="button" onclick="removeItemRow(${idx})" class="text-xs font-semibold text-red-500 active:text-red-700 px-2 py-0.5 rounded hover:bg-red-50">ลบ ✕</button>
           </div>
           <div class="grid grid-cols-12 gap-2">
-            <input type="text" placeholder="รหัสสินค้า" value="${escapeAttr(it.code)}" oninput="updateItemField(${idx}, 'code', this.value)" class="col-span-4 px-2.5 py-2 bg-white border border-slate-200 rounded-lg outline-none focus:border-blue-500">
-            <input id="item_name_${idx}" type="text" placeholder="ชื่อรายการ / อะไหล่" value="${escapeAttr(it.name)}" oninput="updateItemField(${idx}, 'name', this.value)" class="col-span-8 px-2.5 py-2 bg-white border border-slate-200 rounded-lg outline-none focus:border-blue-500 font-medium">
+            <input type="text" placeholder="รหัสสินค้า" value="${escapeAttr(it.code)}" oninput="updateItemField(${idx}, 'code', this.value)" class="col-span-4 px-2.5 py-2 bg-white border border-slate-200 rounded-lg outline-none focus:border-slate-900">
+            <input id="item_name_${idx}" type="text" placeholder="ชื่อรายการ / อะไหล่" value="${escapeAttr(it.name)}" oninput="updateItemField(${idx}, 'name', this.value)" class="col-span-8 px-2.5 py-2 bg-white border border-slate-200 rounded-lg outline-none focus:border-slate-900 font-medium">
           </div>
           <div class="grid grid-cols-3 gap-2">
             <div>
               <span class="block text-[11px] text-slate-500 mb-0.5">จำนวน</span>
-              <input type="text" inputmode="decimal" placeholder="1" value="${escapeAttr(it.qty)}" oninput="updateItemField(${idx}, 'qty', this.value)" class="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg outline-none focus:border-blue-500 text-center">
+              <input type="text" inputmode="decimal" placeholder="1" value="${escapeAttr(it.qty)}" oninput="updateItemField(${idx}, 'qty', this.value)" class="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg outline-none focus:border-slate-900 text-center">
             </div>
             <div>
               <span class="block text-[11px] text-slate-500 mb-0.5">ราคา/ชิ้น</span>
-              <input type="text" inputmode="decimal" placeholder="-" value="${escapeAttr(it.price)}" oninput="updateItemField(${idx}, 'price', this.value)" class="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg outline-none focus:border-blue-500 text-right">
+              <input type="text" inputmode="decimal" placeholder="-" value="${escapeAttr(it.price)}" oninput="updateItemField(${idx}, 'price', this.value)" class="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg outline-none focus:border-slate-900 text-right">
             </div>
             <div>
               <span class="block text-[11px] text-slate-500 mb-0.5">จำนวนเงิน</span>
-              <input id="item_total_${idx}" type="text" inputmode="decimal" placeholder="-" value="${escapeAttr(it.total)}" oninput="updateItemField(${idx}, 'total', this.value)" class="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg outline-none focus:border-blue-500 text-right">
+              <input id="item_total_${idx}" type="text" inputmode="decimal" placeholder="-" value="${escapeAttr(it.total)}" oninput="updateItemField(${idx}, 'total', this.value)" class="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg outline-none focus:border-slate-900 text-right">
             </div>
           </div>
         `;
@@ -768,65 +918,104 @@
       });
     }
 
+    function setCheckboxState(chkId, lblId, isChecked, isMini = false) {
+      const chk = document.getElementById(chkId);
+      const lbl = document.getElementById(lblId);
+      if (chk) {
+        chk.className = (isMini ? 'mini-chk' : 'modern-chk') + (isChecked ? ' checked' : '');
+        chk.innerHTML = isChecked ? (isMini ? MINI_CHECK_SVG : CHECK_SVG_WHITE) : '';
+      }
+      if (lbl) {
+        lbl.className = isChecked
+          ? (isMini ? 'text-[11.5px] font-bold text-slate-900' : 'font-bold text-slate-900')
+          : (isMini ? 'text-[11.5px] text-slate-500' : 'text-slate-600');
+      }
+    }
+
+    function renderStatusOption(label, isChecked) {
+      return `
+        <span class="inline-flex items-center gap-1.5">
+          <span class="mini-chk ${isChecked ? 'checked' : ''}">${isChecked ? MINI_CHECK_SVG : ''}</span>
+          <span class="${isChecked ? 'font-bold text-slate-900' : 'text-slate-600'}">${label}</span>
+        </span>
+      `;
+    }
+
     function updateForm() {
-      // 1. Form Type Checkboxes (crisp SVG checkmarks)
+      // 1. Form Type
       const formType = document.querySelector('input[name="form_type"]:checked')?.value || 'quotation';
-      document.getElementById('chk_booking').innerHTML = formType === 'booking' ? CHECK_SVG : '';
-      document.getElementById('chk_temp_order').innerHTML = formType === 'temp_order' ? CHECK_SVG : '';
-      document.getElementById('chk_sample').innerHTML = formType === 'sample' ? CHECK_SVG : '';
-      document.getElementById('chk_quotation').innerHTML = formType === 'quotation' ? CHECK_SVG : '';
+      setCheckboxState('chk_booking', 'lbl_booking', formType === 'booking');
+      setCheckboxState('chk_temp_order', 'lbl_temp_order', formType === 'temp_order');
+      setCheckboxState('chk_sample', 'lbl_sample', formType === 'sample');
+      setCheckboxState('chk_quotation', 'lbl_quotation', formType === 'quotation');
 
-      // 2. Send Via Checkboxes
+      // 2. Send Via
       const sendVia = document.querySelector('input[name="send_via"]:checked')?.value || 'none';
-      document.getElementById('chk_post').innerHTML = sendVia === 'post' ? CHECK_SVG : '';
-      document.getElementById('chk_fax').innerHTML = sendVia === 'fax' ? CHECK_SVG : '';
-      document.getElementById('chk_email').innerHTML = sendVia === 'email' ? CHECK_SVG : '';
+      setCheckboxState('chk_post', 'lbl_post', sendVia === 'post', true);
+      setCheckboxState('chk_fax', 'lbl_fax', sendVia === 'fax', true);
+      setCheckboxState('chk_email', 'lbl_email', sendVia === 'email', true);
 
-      // 3. Customer Info
-      document.getElementById('preview_hospital').textContent = document.getElementById('input_hospital').value;
-      document.getElementById('preview_address').textContent = document.getElementById('input_address').value;
-      document.getElementById('preview_contact_name').textContent = document.getElementById('input_contact_name').value;
-      document.getElementById('preview_department').textContent = document.getElementById('input_department').value;
-      document.getElementById('preview_email').textContent = document.getElementById('input_email').value;
-
-      // 4. Document Reference
-      document.getElementById('preview_date').textContent = document.getElementById('input_date').value;
-      document.getElementById('preview_ref_bill').textContent = document.getElementById('input_ref_bill').value;
-      document.getElementById('preview_welfare').textContent = document.getElementById('input_welfare').value;
+      // 3. Document Reference
+      document.getElementById('preview_date').textContent = document.getElementById('input_date').value || '-';
+      document.getElementById('preview_ref_bill').textContent = document.getElementById('input_ref_bill').value || '-';
+      document.getElementById('preview_welfare').textContent = document.getElementById('input_welfare').value || '-';
 
       const refCode = document.getElementById('input_ref_code').value.trim();
-      const refWrap = document.getElementById('preview_ref_code_wrap');
+      const refBadge = document.getElementById('preview_ref_code_badge');
       document.getElementById('preview_ref_code').textContent = refCode;
-      if (refCode) refWrap.classList.remove('hidden');
-      else refWrap.classList.add('hidden');
+      if (refCode) refBadge.classList.remove('hidden');
+      else refBadge.classList.add('hidden');
 
-      // 5. Job Status & Footer
+      // 4. Customer Info
+      document.getElementById('preview_hospital').textContent = document.getElementById('input_hospital').value;
+      document.getElementById('preview_address').textContent = document.getElementById('input_address').value || '-';
+      document.getElementById('preview_contact_name').textContent = document.getElementById('input_contact_name').value || '-';
+      const dept = document.getElementById('input_department').value.trim();
+      document.getElementById('preview_department').textContent = dept || '-';
+      document.getElementById('preview_department_pill_val').textContent = dept;
+      const deptPill = document.getElementById('preview_dept_pill');
+      if (dept) deptPill.classList.remove('hidden');
+      else deptPill.classList.add('hidden');
+      document.getElementById('preview_email').textContent = document.getElementById('input_email').value || '-';
+
+      // 5. Equipment Spec Bar
+      const eqType = document.getElementById('input_eq_type').value.trim();
+      const eqBrand = document.getElementById('input_eq_brand').value.trim();
+      const eqModel = document.getElementById('input_eq_model').value.trim();
+      const eqSn = document.getElementById('input_eq_sn').value.trim();
+      const eqCard = document.getElementById('preview_equipment_card');
+      if (eqType || eqBrand || eqModel || eqSn) {
+        eqCard.classList.remove('hidden');
+        document.getElementById('preview_eq_type').textContent = eqType || '-';
+        document.getElementById('preview_eq_brand').textContent = eqBrand || '-';
+        document.getElementById('preview_eq_model').textContent = eqModel || '-';
+        document.getElementById('preview_eq_sn').textContent = eqSn || '-';
+      } else {
+        eqCard.classList.add('hidden');
+      }
+
+      // 6. Footer & Job Status
       document.getElementById('preview_approver').textContent = document.getElementById('input_approver').value;
 
       const stockStatus = document.getElementById('input_stock_status').value;
-      if (stockStatus === 'ready') {
-        document.getElementById('preview_stock_status').innerHTML = '<strong class="underline">✓ พร้อมส่งทั้งหมด</strong> &nbsp;/&nbsp; <span class="text-slate-400">ไม่พร้อมส่ง</span>';
-      } else if (stockStatus === 'not_ready') {
-        document.getElementById('preview_stock_status').innerHTML = '<span class="text-slate-400">พร้อมส่งทั้งหมด</span> &nbsp;/&nbsp; <strong class="underline">✓ ไม่พร้อมส่ง</strong>';
-      } else if (stockStatus === 'partial') {
-        document.getElementById('preview_stock_status').innerHTML = '<strong class="underline">✓ ทยอยส่ง</strong>';
+      if (stockStatus === 'partial') {
+        document.getElementById('preview_stock_status').innerHTML =
+          renderStatusOption('ทยอยส่ง', true) + renderStatusOption('ไม่พร้อมส่ง', false);
       } else {
-        document.getElementById('preview_stock_status').innerHTML = 'พร้อมส่งทั้งหมด &nbsp;/&nbsp; ไม่พร้อมส่ง';
+        document.getElementById('preview_stock_status').innerHTML =
+          renderStatusOption('พร้อมส่งทั้งหมด', stockStatus === 'ready') +
+          renderStatusOption('ไม่พร้อมส่ง', stockStatus === 'not_ready');
       }
 
       const orderOrigin = document.getElementById('input_order_origin').value;
-      if (orderOrigin === 'domestic') {
-        document.getElementById('preview_order_origin').innerHTML = '<strong class="underline">✓ ในประเทศ</strong> &nbsp;/&nbsp; <span class="text-slate-400">ต่างประเทศ</span>';
-      } else if (orderOrigin === 'international') {
-        document.getElementById('preview_order_origin').innerHTML = '<span class="text-slate-400">ในประเทศ</span> &nbsp;/&nbsp; <strong class="underline">✓ ต่างประเทศ</strong>';
-      } else {
-        document.getElementById('preview_order_origin').innerHTML = 'ในประเทศ &nbsp;/&nbsp; ต่างประเทศ';
-      }
+      document.getElementById('preview_order_origin').innerHTML =
+        renderStatusOption('ในประเทศ', orderOrigin === 'domestic') +
+        renderStatusOption('ต่างประเทศ', orderOrigin === 'international');
 
       document.getElementById('preview_delivery_date').textContent = document.getElementById('input_delivery_date').value;
       document.getElementById('preview_billed_no').textContent = document.getElementById('input_billed_no').value;
 
-      // 6. Render Table
+      // 7. Table
       renderPreviewTable();
       scaleA4Preview();
       saveState();
@@ -834,44 +1023,13 @@
 
     function renderPreviewTable() {
       const tbody = document.getElementById('preview_table_body');
+      const tfoot = document.getElementById('preview_table_footer');
       tbody.innerHTML = '';
 
-      const eqType = document.getElementById('input_eq_type').value.trim();
-      const eqBrand = document.getElementById('input_eq_brand').value.trim();
-      const eqModel = document.getElementById('input_eq_model').value.trim();
-      const eqSn = document.getElementById('input_eq_sn').value.trim();
-
-      // Exact 14 rows matching original paper form so A4 prints cleanly with zero cutoff
-      const totalRowsTarget = 14;
+      const totalRowsTarget = 11;
       let rowsUsed = 0;
-
-      if (eqType || eqBrand || eqModel || eqSn) {
-        const headerLines = [
-          { text: eqType, cls: 'font-bold tracking-wide' },
-          { text: eqBrand, cls: 'font-semibold' },
-          { text: eqModel, cls: 'font-semibold' },
-          { text: eqSn ? `S/N : ${eqSn}` : '', cls: 'font-medium' }
-        ].filter(x => x.text);
-
-        headerLines.forEach(item => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td></td>
-            <td></td>
-            <td class="text-center ${item.cls}">${escapeHtml(item.text)}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-          `;
-          tbody.appendChild(tr);
-          rowsUsed++;
-        });
-
-        const spacer = document.createElement('tr');
-        spacer.innerHTML = `<td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td>`;
-        tbody.appendChild(spacer);
-        rowsUsed++;
-      }
+      let grandTotal = 0;
+      let hasAnyTotal = false;
 
       let displayIdx = 1;
       items.forEach((it) => {
@@ -879,14 +1037,20 @@
         const priceNum = Number(String(it.price).replace(/,/g, ''));
         const priceFormatted = it.price && !isNaN(priceNum) ? priceNum.toLocaleString() : escapeHtml(it.price);
 
+        const totalNum = Number(String(it.total).replace(/,/g, ''));
+        if (it.total && !isNaN(totalNum)) {
+          grandTotal += totalNum;
+          hasAnyTotal = true;
+        }
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td class="font-semibold">${displayIdx++}</td>
-          <td class="text-left text-xs">${escapeHtml(it.code)}</td>
-          <td class="text-left pl-2.5 font-medium">${escapeHtml(it.name)}</td>
-          <td class="font-semibold">${escapeHtml(it.qty)}</td>
-          <td class="text-right pr-2">${priceFormatted}</td>
-          <td class="text-right pr-2">${escapeHtml(it.total)}</td>
+          <td class="font-semibold text-slate-700">${displayIdx++}</td>
+          <td class="text-left font-mono text-[11.5px] text-slate-600">${escapeHtml(it.code)}</td>
+          <td class="text-left pl-3 font-semibold text-slate-900">${escapeHtml(it.name)}</td>
+          <td class="font-bold text-slate-900">${escapeHtml(it.qty)}</td>
+          <td class="text-right pr-2.5 text-slate-800">${priceFormatted}</td>
+          <td class="text-right pr-2.5 font-semibold text-slate-900">${escapeHtml(it.total)}</td>
         `;
         tbody.appendChild(tr);
         rowsUsed++;
@@ -897,6 +1061,13 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `<td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td>`;
         tbody.appendChild(tr);
+      }
+
+      if (hasAnyTotal) {
+        tfoot.classList.remove('hidden');
+        document.getElementById('preview_grand_total').textContent = grandTotal.toLocaleString();
+      } else {
+        tfoot.classList.add('hidden');
       }
     }
 
@@ -973,6 +1144,7 @@
     function getCurrentState() {
       return {
         font: currentFont,
+        theme: currentTheme,
         form_type: document.querySelector('input[name="form_type"]:checked')?.value || 'quotation',
         send_via: document.querySelector('input[name="send_via"]:checked')?.value || 'none',
         hospital: document.getElementById('input_hospital').value,
@@ -1000,6 +1172,7 @@
     function applyState(s) {
       if (!s || typeof s !== 'object') return false;
       if (s.font && FONT_MAP[s.font]) setDocFont(s.font);
+      if (s.theme && (s.theme === 'modern' || s.theme === 'minimal')) setDocTheme(s.theme);
 
       const ft = document.querySelector(`input[name="form_type"][value="${s.form_type}"]`);
       if (ft) ft.checked = true;
